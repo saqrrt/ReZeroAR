@@ -1,1 +1,1048 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>ReZeroAR | رواية Re:Zero بالعربية</title>
+    <meta name="description" content="ReZeroAR — موقع عربي لترجمة وقراءة رواية Re:Zero، ويضم القصة الأساسية والقصص الجانبية مع تجربة قراءة مريحة.">
+
+    <style>
+        /* =========================
+           الأساسيات
+        ========================== */
+
+        :root {
+            --bg: #f5f6f8;
+            --card: #ffffff;
+            --text: #1c1c1f;
+            --muted: #70747c;
+            --border: #e4e6ea;
+            --primary: #6d4aff;
+            --primary-dark: #5636dc;
+            --header: rgba(255, 255, 255, 0.88);
+            --shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        button,
+        a {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* =========================
+           الهيدر
+        ========================== */
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            height: 72px;
+
+            background: var(--header);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            width: min(1200px, calc(100% - 32px));
+            height: 100%;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+
+        /* =========================
+           الشعار
+        ========================== */
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+
+        /* =========================
+           قائمة الكمبيوتر
+        ========================== */
+
+        .desktop-menu {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .menu-button {
+            border: 0;
+            background: transparent;
+
+            padding: 10px 13px;
+            border-radius: 12px;
+
+            color: var(--text);
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            transition: 0.2s ease;
+        }
+
+        .menu-button:hover {
+            background: #eeeeF3;
+        }
+
+        .menu-icon {
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           زر الجوال
+        ========================== */
+
+        .mobile-menu-button {
+            display: none;
+
+            border: 0;
+            background: transparent;
+
+            width: 44px;
+            height: 44px;
+
+            border-radius: 12px;
+
+            font-size: 25px;
+        }
+
+        .mobile-menu-button:hover {
+            background: #eeeeF3;
+        }
+
+
+        /* =========================
+           القائمة الجانبية للجوال
+        ========================== */
+
+        .mobile-menu {
+            position: fixed;
+            top: 72px;
+            right: 0;
+
+            width: min(340px, 88vw);
+            height: calc(100vh - 72px);
+
+            background: var(--card);
+            border-left: 1px solid var(--border);
+
+            box-shadow: -15px 0 40px rgba(0, 0, 0, 0.12);
+
+            padding: 22px;
+
+            transform: translateX(105%);
+            transition: transform 0.25s ease;
+
+            z-index: 999;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .mobile-menu-title {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .mobile-menu-item {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            border: 0;
+            background: transparent;
+
+            padding: 14px;
+            margin-bottom: 5px;
+
+            border-radius: 13px;
+
+            text-align: right;
+            color: var(--text);
+
+            transition: 0.2s ease;
+        }
+
+        .mobile-menu-item:hover {
+            background: #f1f1f5;
+        }
+
+        .mobile-menu-item .icon {
+            font-size: 21px;
+            width: 28px;
+            text-align: center;
+        }
+
+        .mobile-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 18px 0;
+        }
+
+
+        /* =========================
+           المحتوى الرئيسي
+        ========================== */
+
+        .hero {
+            width: min(1100px, calc(100% - 32px));
+
+            margin: 55px auto 80px;
+
+            display: grid;
+            grid-template-columns: 360px 1fr;
+
+            align-items: center;
+            gap: 70px;
+        }
+
+
+        /* =========================
+           صورة الرواية
+        ========================== */
+
+        .cover-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cover {
+            width: 320px;
+            max-width: 100%;
+
+            aspect-ratio: 2 / 3;
+
+            object-fit: cover;
+
+            border-radius: 22px;
+
+            background: #e8e8ed;
+
+            box-shadow: var(--shadow);
+
+            display: block;
+        }
+
+
+        /* =========================
+           النص
+        ========================== */
+
+        .hero-content {
+            text-align: right;
+        }
+
+        .small-title {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 15px;
+
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-size: clamp(40px, 6vw, 72px);
+            line-height: 1;
+            letter-spacing: -2px;
+
+            margin-bottom: 18px;
+        }
+
+        .hero-description {
+            max-width: 650px;
+
+            color: var(--muted);
+
+            font-size: 18px;
+            line-height: 1.9;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =========================
+           الأزرار
+        ========================== */
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .primary-button,
+        .secondary-button {
+            border: 0;
+
+            padding: 13px 21px;
+
+            border-radius: 13px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            transition: 0.2s ease;
+        }
+
+        .primary-button {
+            background: var(--primary);
+            color: white;
+        }
+
+        .primary-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .secondary-button:hover {
+            background: #f0f0f3;
+        }
+
+
+        /* =========================
+           تسجيل الدخول
+        ========================== */
+
+        .account-section {
+            width: min(1100px, calc(100% - 32px));
+
+            margin: 0 auto 40px;
+
+            padding: 25px;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .account-text h2 {
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        .account-text p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .account-buttons {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+        }
+
+
+        /* =========================
+           التنبيه
+        ========================== */
+
+        .notice {
+            width: min(1100px, calc(100% - 32px));
+
+            margin: 0 auto 50px;
+
+            padding: 20px;
+
+            background: #fff9e9;
+
+            border: 1px solid #f1dfaa;
+            border-radius: 16px;
+
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+        }
+
+        .notice-icon {
+            font-size: 22px;
+        }
+
+        .notice h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .notice p {
+            color: #70684f;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           الفوتر
+        ========================== */
+
+        footer {
+            border-top: 1px solid var(--border);
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           الخلفية عند فتح قائمة الجوال
+        ========================== */
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.35);
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition: 0.2s ease;
+
+            z-index: 998;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        /* =========================
+           الجوال
+        ========================== */
+
+        @media (max-width: 800px) {
+
+            .header {
+                height: 64px;
+            }
+
+            .header-inner {
+                width: calc(100% - 22px);
+            }
+
+            .desktop-menu {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .mobile-menu {
+                top: 64px;
+                height: calc(100vh - 64px);
+            }
+
+            .hero {
+                margin-top: 35px;
+
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+
+                text-align: center;
+            }
+
+            .cover-container {
+                order: 1;
+            }
+
+            .cover {
+                width: min(270px, 75vw);
+            }
+
+            .hero-content {
+                order: 2;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .account-section {
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+            .account-buttons {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .account-buttons button {
+                flex: 1;
+            }
+
+            .notice {
+                text-align: right;
+            }
+        }
+
+
+        /* =========================
+           الشاشات الصغيرة جدًا
+        ========================== */
+
+        @media (max-width: 420px) {
+
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .primary-button,
+            .secondary-button {
+                width: 100%;
+            }
+
+            .account-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .account-buttons button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- =========================
+         الهيدر
+    ========================== -->
+
+    <header class="header">
+
+        <div class="header-inner">
+
+            <a href="#" class="logo">
+                Re<span>Zero</span>AR
+            </a>
+
+
+            <!-- قائمة الكمبيوتر -->
+
+            <nav class="desktop-menu">
+
+                <button class="menu-button" onclick="goToMainStory()">
+                    <span class="menu-icon">📖</span>
+                    القصة الأساسية
+                </button>
+
+                <button class="menu-button" onclick="goToSideStories()">
+                    <span class="menu-icon">📚</span>
+                    القصص الجانبية
+                </button>
+
+                <button class="menu-button" onclick="openSettings()">
+                    <span class="menu-icon">⚙️</span>
+                    الإعدادات
+                </button>
+
+                <button class="menu-button" onclick="showReadingNotice()">
+                    <span class="menu-icon">⚠️</span>
+                    تنبيه قبل القراءة
+                </button>
+
+            </nav>
+
+
+            <!-- زر الجوال -->
+
+            <button
+                class="mobile-menu-button"
+                onclick="toggleMobileMenu()"
+                aria-label="فتح القائمة"
+                aria-expanded="false"
+                id="mobileMenuButton"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- الخلفية -->
+
+    <div
+        class="overlay"
+        id="overlay"
+        onclick="closeMobileMenu()"
+    ></div>
+
+
+    <!-- =========================
+         قائمة الجوال
+    ========================== -->
+
+    <aside class="mobile-menu" id="mobileMenu">
+
+        <div class="mobile-menu-title">
+            القائمة
+        </div>
+
+
+        <button
+            class="mobile-menu-item"
+            onclick="goToMainStory(); closeMobileMenu();"
+        >
+            <span class="icon">📖</span>
+            <span>القصة الأساسية</span>
+        </button>
+
+
+        <button
+            class="mobile-menu-item"
+            onclick="goToSideStories(); closeMobileMenu();"
+        >
+            <span class="icon">📚</span>
+            <span>القصص الجانبية</span>
+        </button>
+
+
+        <button
+            class="mobile-menu-item"
+            onclick="openSettings(); closeMobileMenu();"
+        >
+            <span class="icon">⚙️</span>
+            <span>الإعدادات</span>
+        </button>
+
+
+        <button
+            class="mobile-menu-item"
+            onclick="showReadingNotice(); closeMobileMenu();"
+        >
+            <span class="icon">⚠️</span>
+            <span>تنبيه قبل القراءة</span>
+        </button>
+
+
+        <div class="mobile-divider"></div>
+
+
+        <div class="mobile-menu-title">
+            الحساب
+        </div>
+
+
+        <button
+            class="mobile-menu-item"
+            onclick="guestLogin(); closeMobileMenu();"
+        >
+            <span class="icon">👤</span>
+            <span>تسجيل الدخول كزائر</span>
+        </button>
+
+
+        <button
+            class="mobile-menu-item"
+            onclick="createAccount(); closeMobileMenu();"
+        >
+            <span class="icon">➕</span>
+            <span>إنشاء حساب</span>
+        </button>
+
+    </aside>
+
+
+    <!-- =========================
+         المحتوى الرئيسي
+    ========================== -->
+
+    <main>
+
+
+        <section class="hero">
+
+
+            <!-- صورة الرواية -->
+
+            <div class="cover-container">
+
+                <!--
+                    ضع صورة الغلاف هنا:
+
+                    images/cover.jpg
+
+                    وأنشئ مجلد اسمه images
+                    ثم ارفع الصورة بداخله.
+                -->
+
+                <img
+                    class="cover"
+                    src="images/cover.jpg"
+                    alt="غلاف رواية Re:Zero"
+                    onerror="this.style.visibility='hidden';"
+                >
+
+            </div>
+
+
+            <!-- النص -->
+
+            <div class="hero-content">
+
+                <div class="small-title">
+                    ReZeroAR
+                </div>
+
+                <h1 class="hero-title">
+                    Re:Zero
+                </h1>
+
+                <p class="hero-description">
+                    موقع عربي لترجمة وقراءة رواية Re:Zero،
+                    ويضم القصة الأساسية والقصص الجانبية
+                    مع تجربة قراءة مريحة ومخصصة للقراء.
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="primary-button"
+                        onclick="goToMainStory()"
+                    >
+                        📖 ابدأ القراءة
+                    </button>
+
+                    <button
+                        class="secondary-button"
+                        onclick="goToSideStories()"
+                    >
+                        📚 القصص الجانبية
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             تسجيل الدخول
+        ========================== -->
+
+        <section class="account-section">
+
+            <div class="account-text">
+
+                <h2>
+                    حسابك في ReZeroAR
+                </h2>
+
+                <p>
+                    احفظ تقدمك وإعدادات القراءة في المستقبل.
+                </p>
+
+            </div>
+
+
+            <div class="account-buttons">
+
+                <button
+                    class="secondary-button"
+                    onclick="guestLogin()"
+                >
+                    👤 تسجيل الدخول كزائر
+                </button>
+
+                <button
+                    class="primary-button"
+                    onclick="createAccount()"
+                >
+                    ＋ إنشاء حساب
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             التنبيه
+        ========================== -->
+
+        <section class="notice">
+
+            <div class="notice-icon">
+                ⚠️
+            </div>
+
+            <div>
+
+                <h3>
+                    تنبيه قبل القراءة
+                </h3>
+
+                <p>
+                    هذا الموقع مخصص لقراءة ترجمة عربية لرواية Re:Zero.
+                    قد تحتوي بعض الفصول على أحداث أو معلومات قد تعتبر حرقًا
+                    لمن لم يصل إليها بعد.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         الفوتر
+    ========================== -->
+
+    <footer>
+
+        ReZeroAR © 2026
+
+    </footer>
+
+
+    <!-- =========================
+         JavaScript
+    ========================== -->
+
+    <script>
+
+        /*
+         * فتح وإغلاق قائمة الجوال
+         */
+
+        function toggleMobileMenu() {
+
+            const menu = document.getElementById("mobileMenu");
+            const overlay = document.getElementById("overlay");
+            const button = document.getElementById("mobileMenuButton");
+
+            const isOpen = menu.classList.toggle("open");
+
+            overlay.classList.toggle("show", isOpen);
+
+            button.setAttribute("aria-expanded", isOpen);
+
+        }
+
+
+        /*
+         * إغلاق القائمة
+         */
+
+        function closeMobileMenu() {
+
+            const menu = document.getElementById("mobileMenu");
+            const overlay = document.getElementById("overlay");
+            const button = document.getElementById("mobileMenuButton");
+
+            menu.classList.remove("open");
+
+            overlay.classList.remove("show");
+
+            button.setAttribute("aria-expanded", "false");
+
+        }
+
+
+        /*
+         * القصة الأساسية
+         *
+         * لاحقًا نغيّر الرابط إلى صفحة
+         * قائمة الفصول الحقيقية.
+         */
+
+        function goToMainStory() {
+
+            window.location.href = "chapters/";
+
+        }
+
+
+        /*
+         * القصص الجانبية
+         *
+         * سننشئ هذه الصفحة لاحقًا.
+         */
+
+        function goToSideStories() {
+
+            alert("صفحة القصص الجانبية قيد التجهيز.");
+
+        }
+
+
+        /*
+         * الإعدادات
+         *
+         * سنضيف صفحة الإعدادات الحقيقية لاحقًا.
+         */
+
+        function openSettings() {
+
+            alert("الإعدادات قيد التجهيز.");
+
+        }
+
+
+        /*
+         * تنبيه القراءة
+         */
+
+        function showReadingNotice() {
+
+            alert(
+                "تنبيه قبل القراءة:\n\n" +
+                "بعض الفصول قد تحتوي على أحداث أو معلومات تعتبر حرقًا للأحداث."
+            );
+
+        }
+
+
+        /*
+         * تسجيل الدخول كزائر
+         */
+
+        function guestLogin() {
+
+            localStorage.setItem("rezeroar_guest", "true");
+
+            alert(
+                "تم الدخول كزائر.\n\n" +
+                "سنضيف نظام حفظ التقدم وإعدادات القارئ لاحقًا."
+            );
+
+        }
+
+
+        /*
+         * إنشاء حساب
+         *
+         * الحسابات الحقيقية تحتاج Backend وقاعدة بيانات،
+         * لذلك هذا الزر حاليًا تجريبي.
+         */
+
+        function createAccount() {
+
+            alert(
+                "نظام إنشاء الحساب قيد التجهيز."
+            );
+
+        }
+
+
+        /*
+         * إغلاق القائمة عند الضغط على زر Escape
+         */
+
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+
+                closeMobileMenu();
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
